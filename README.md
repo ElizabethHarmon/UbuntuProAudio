@@ -83,7 +83,7 @@ substituting --user for --global if you originally enabled globally.
 
 To make your life easier, install either Ubuntu Studio or AVLinux. Almost all of the following tweaks are taken care of. Otherwise, pick a regular distro such as Ubuntu, MXLinux etc.
 
-### Install a low-latency kernel
+### Install a low-latency kernel (Ubuntu-based)
 
 ```shell
 sudo apt update && sudo apt upgrade -y
@@ -92,7 +92,7 @@ reboot
 ```
 Or, for even better performance:
 
-#### Liquorix
+#### Liquorix (Debian-based or Ubuntu-based)
 
 ```shell
 sudo apt update && sudo apt upgrade -y
