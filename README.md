@@ -296,7 +296,7 @@ iv. Install Windows VST2 and VST3 (preferred) plugins
     
     
 ### Thanks
-Audiojunkie for various links and clarifications.
+Audiojunkie for various links and clarifications including KXStudio.
 
 
 
