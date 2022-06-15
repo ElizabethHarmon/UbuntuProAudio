@@ -75,7 +75,7 @@ systemctl --user --now disable pipewire-pulse.service pipewire-pulse.socket
 systemctl --user --now reenable pulseaudio.service pulseaudio.socket
 ```
 
-substituting --global for --user if you enabled globally.
+substituting --user for --global if you originally enabled globally.
 
 ## Full In-depth Guide
 
