@@ -26,7 +26,7 @@ Be sure to say 'yes' to removing conflicting packages. Reboot! It would also be 
 ```shell
 sudo apt install qpwgraph
 ```
-That should give you everything you need to get up and running. I consider Pipewire ready for primetime at this point. 
+That should give you everything you need to get up and running. I consider Pipewire ready for primetime at this point. For Debian-specific instructions please see For Debian in particular see https://wiki.debian.org/PipeWire.
 
 #### Pipewire configuration
 
@@ -55,7 +55,7 @@ and
 pw-metadata -n settings 0 clock.force-quantum 0
 ```
 
-See https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-PipeWire#setting-buffer-size and https://gitlab.freedesktop.org/pipew...ormance-tuning for more details. For Debian in particular see https://wiki.debian.org/PipeWire.
+See https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-PipeWire#setting-buffer-size and https://gitlab.freedesktop.org/pipew...ormance-tuning for more details. 
 
 #### Back to ALSA/Pulse?
 
