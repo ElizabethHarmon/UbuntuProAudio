@@ -55,7 +55,7 @@ and
 pw-metadata -n settings 0 clock.force-quantum 0
 ```
 
-See https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-PipeWire#setting-buffer-size for more details.
+See https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-PipeWire#setting-buffer-size and https://gitlab.freedesktop.org/pipew...ormance-tuning for more details.
 
 #### Back to ALSA/Pulse?
 
