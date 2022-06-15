@@ -1,4 +1,4 @@
-# A Pro Audio Tuning Guide for Ubuntu (and other Ubuntu-based or Debian-based distros)
+# A Pro Audio Tuning Guide for Ubuntu (and other Ubuntu/Debian-based distros)
 [![Discord](https://img.shields.io/discord/985310454266081280.svg?label=Discord&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/GYeBgF7Em9)
 
 Following this guide will hopefully allow you to get the best possible performance on Linux for professional audio needs. Even though these steps are well-tested, it is wise to research what each step accomplishes and why (the search engine is your friend :P ).
@@ -73,8 +73,26 @@ pactl info
 
 ### Install a flavor of Ubuntu (or other favorite Ubuntu-based or Debian-based distro)
 
+To make your life easier, install either Ubuntu Studio or AVLinux. Almost all of the following tweaks are taken care of. Otherwise, pick a regular distro such as Ubuntu, MXLinux etc.
+
 ### Install a low-latency kernel
 
+```shell
+sudo apt update && sudo apt upgrade -y
+sudo apt install linux-lowlatency
+```
+Or, for even better performance:
+
+#### Liquorix
+
+```shell
+sudo apt update && sudo apt upgrade -y
+sudo apt install software-properties-common apt-transport-https wget ca-certificates gnupg2 ubuntu-keyring -y
+sudo add-apt-repository ppa:damentz/liquorix -y
+sudo apt update
+sudo apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
+reboot
+```
 
 ### rtcqs (formerly known as realtimeconfigquickscan)
     
@@ -85,6 +103,25 @@ cd rtcqs
 ```
 
 ### Add user to audio group and configure realtime privileges
+
+I believe that installing jackd2 takes care of the following these days. It is always worth double-checking especially if using pipewire.
+
+```shell
+sudo nano/etc/security/limits.d/audio.conf
+```
+Add the following lines:
+
+```shell
+@audio   -  rtprio     95
+@audio   -  memlock    unlimited
+```
+
+Then create an audio group (if it doesn't exist already) and add your user to it:
+
+```shell
+sudo groupadd audio 
+sudo usermod -a -G audio $USER
+```
 
 Log out/in or reboot...
 
@@ -98,12 +135,6 @@ change
     
 ```shell
 sudo update-grub
-```
-
-or if you don't have update-grub installed
-
-```shell
-sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ### Set governor to "performance"
@@ -164,7 +195,7 @@ reboot
 ### Jack2 + Jack D-Bus (__skip this step if you switched to Pipewire__)
 
 ```shell
-sudo apt install qjackctl jack2-dbus
+sudo apt install qjackctl jackd2
 ```
 Enable Jack D-Bus interface:  
 ![image](https://user-images.githubusercontent.com/79659262/124497122-51218300-ddb2-11eb-8cb8-4bf873e026cd.png)
@@ -242,7 +273,7 @@ where x.y.z is the version number such as 4.0.1. Don't forget to add yabridgectl
 
 ii. Configure yabridge according to https://github.com/robbert-vdh/yabridge#readme  
 iii. if using wine-tkg, append "export WINEFSYNC=1" to ~/.bash_profile 
- 
+
 ```shell
 nano ~/.bash_profile
 . ~/.bash_profile
