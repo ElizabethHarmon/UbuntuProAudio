@@ -9,16 +9,16 @@ To get started after installing Ubuntu, you could try just steps 3 and 5 below. 
 
 ### Pipewire?
 
-Ubuntu includes a convenient way of switching to Pipewire (see https://pipewire.org/ for more details). You may choose to wait until it ships as default in future releases although it is just as easy to roll things back. To switch to Pipewire run:
+Ubuntu includes a way of switching to Pipewire (see https://ubuntuhandbook.org/index.php/2022/04/pipewire-replace-pulseaudio-ubuntu-2204/ & https://pipewire.org/ for more details). You may choose to wait until it ships as default in future releases although it is just as easy to roll things back. To switch to Pipewire run:
 
 ```shell
-sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream
-sudo apt update
-sudo apt install pipewire pipewire-audio-client-libraries
-sudo apt install gstreamer1.0-pipewire libpipewire-0.3-{0,dev,modules} libspa-0.2-{bluetooth,dev,jack,modules} pipewire{,-{audio-client-libraries,pulse,media-session,bin,locales,tests}}
-systemctl --user daemon-reload
-systemctl --user --now disable pulseaudio.service pulseaudio.socket
-systemctl --user --now enable pipewire pipewire-pulse
+sudo apt install pipewire-audio-client-libraries libspa-0.2-bluetooth libspa-0.2-jack
+sudo apt install wireplumber pipewire-media-session-
+sudo cp /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
+sudo cp /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/
+sudo ldconfig
+sudo apt remove pulseaudio-module-bluetooth
+systemctl --user --now enable wireplumber.service
 pactl info
 ```
 Be sure to say 'yes' to removing conflicting packages. Reboot! It would also be wise to install a graph manager like qpwgraph to be able to make connections between apps and devices:
@@ -62,12 +62,20 @@ See https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-PipeWire#set
 In the unlikely event you need to switch back:
 
 ```shell
-sudo apt remove pipewire pipewire-audio-client-libraries
-sudo apt remove gstreamer1.0-pipewire libpipewire-0.3-{0,dev,modules} libspa-0.2-{bluetooth,dev,jack,modules} pipewire{,-{audio-client-libraries,pulse,media-session,bin,locales,tests}}
-systemctl --user daemon-reload
-systemctl --user --now enable pulseaudio.service pulseaudio.socket
-pactl info
+sudo apt remove pipewire-audio-client-libraries libspa-0.2-bluetooth libspa-0.2-jack
+sudo apt install pipewire-media-session wireplumber-
+rm -f ~/.config/systemd/user/pipewire-session-manager.service
+systemctl --user --now enable pipewire-media-session
 ```
+
+If the sound still isn't working:
+
+```shell
+systemctl --user --now disable pipewire-pulse.service pipewire-pulse.socket
+systemctl --user --now reenable pulseaudio.service pulseaudio.socket
+```
+
+substituting --global for --user if you enabled globally.
 
 ## Full In-depth Guide
 
