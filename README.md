@@ -232,6 +232,8 @@ https://en.wikipedia.org/wiki/List_of_Linux_audio_software#Digital_audio_worksta
 - Bertom Denoiser (https://www.bertomaudio.com/denoiser.html) (not in the Arch repos or AUR)
 - sfizz / sfizz-git (https://sfz.tools/sfizz/)
 
+A brilliant resource for Debian- and Ubuntu-based distros is  https://kx.studio/. Add the repo by downloading and installing the [KXStudio repo](https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb).
+
 ### Wine-staging or Wine-tkg
 
 Perhaps start with vanilla wine-staging and see how you fare in terms of performance. If your workflows rely heavily on VSTi like Kontakt, you may find better performance with wine-tkg (fsync enabled). 
