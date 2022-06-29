@@ -115,7 +115,7 @@ cd rtcqs
 I believe that installing jackd2 takes care of the following these days. It is always worth double-checking especially if using pipewire.
 
 ```shell
-sudo nano/etc/security/limits.d/audio.conf
+sudo nano /etc/security/limits.d/audio.conf
 ```
 Add the following lines:
 
