@@ -1,5 +1,4 @@
 # A Pro Audio Tuning Guide for Ubuntu (and other Ubuntu/Debian-based distros)
-[![Discord](https://img.shields.io/discord/985310454266081280.svg?label=Discord&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/GYeBgF7Em9)
 
 Following this guide will hopefully allow you to get the best possible performance on Linux for professional audio needs. Even though these steps are well-tested, it is wise to research what each step accomplishes and why (the search engine is your friend :P ).
 
